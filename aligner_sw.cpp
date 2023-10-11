@@ -607,7 +607,7 @@ bool SwAligner::align(
 					sb.append(to_string(num));
 				}
 				res.alres.mycigar = sb;
-				res.alres.setScore(AlnScore(best, 101, 0, 0, 0));
+				res.alres.setScore(AlnScore(best-1, 101, 0, 0, 0));
 				res.alres.setShape(refidx_, coord.off(), reflen_, fw_, rdf_ - rdi_, true, 0, 0, true, 0, 0);
 				res.alres.setRefNs(0);
 				affine_wavefronts_delete(affine_wavefronts);
