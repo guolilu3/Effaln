@@ -1,5 +1,5 @@
 # Effaln
-version 1.0（20220915） 
+version 1.0（20220915）   
 version 2.0 (20231022)
 
 # What is it?
