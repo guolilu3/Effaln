@@ -1,7 +1,9 @@
 #pragma once
 #include "header.h"
-#define CGK_THRED 35
+#define CGK_THRED 0.35
 #define CGK_LOOP 5
+// #define CGK_THRED 0.55
+// #define CGK_LOOP 10
 using namespace std;
 class Embedding
 {

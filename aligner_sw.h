@@ -115,7 +115,7 @@ public:
 		bianma = new char *[3];
 		for (int i = 0; i < 3; i++)
 		{
-			bianma[i] = new char[500 + 1];
+			bianma[i] = new char[MAX_ELEN + 1];
 		}
 		embed_rd = false;
 		for (int i = 0; i < loop; i++)
@@ -123,7 +123,7 @@ public:
 			embeddedQ[i] = new char *[2];
 			for (int j = 0; j < 2; j++)
 			{
-				embeddedQ[i][j] = new char[500 + 1];
+				embeddedQ[i][j] = new char[MAX_ELEN + 1];
 			}
 		}
 	}

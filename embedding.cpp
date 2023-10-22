@@ -92,7 +92,9 @@ int Embedding::cgk_embed(const char **oridata, unsigned rlen, int threshold, int
     for (int i = 0; i < rlen; i++)
     {
       uint8_t s = oridata[id][i];
+      // cout<<"bef... strid:"<<strid<<" j:"<<j<<endl;
       char bit = hash_eb[n][BITPOS(strid, j, s)];
+      // cout<<"aft..."<<endl;
       if (!bit)
       {
         embeddedQ[j] = s;
@@ -309,7 +311,8 @@ Embedding::Embedding()
     string tmp;
     getline(fin, tmp);
     for (int j = 0; j < NUM_STR; j++)
-      for (int t = 0; t < NUM_CHAR; t++)
+      // for (int t = 0; t < NUM_CHAR; t++)
+      for (int t = 0; t < 1; t++) //gll
         for (int d = 0; d < MAX_ELEN; d++)
           hash_eb[i][BITPOS(j, d, t)] = tmp.at(t * MAX_ELEN + d) - '0';
   }

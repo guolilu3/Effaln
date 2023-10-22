@@ -183,7 +183,8 @@ static void testCaseFindMateAnchorLeft(
 	int64_t refl, refr;
 	EList<bool> st, en;
 	size_t trimup, trimdn;
-	size_t maxhalf = 500;
+	// size_t maxhalf = 500;
+	size_t maxhalf = 1000; //gll
 	size_t maxgaps = 0;
 	fr.frameFindMateAnchorLeft(
 		ll,
@@ -228,7 +229,8 @@ static void testCaseFindMateAnchorRight(
 	int64_t refl, refr;
 	EList<bool> st, en;
 	size_t trimup, trimdn;
-	size_t maxhalf = 500;
+	// size_t maxhalf = 500;
+	size_t maxhalf = 1000; //gll
 	fr.frameFindMateAnchorRight(
 		ll,
 		lr, rl, rr, rdlen, reflen, maxrdgap, maxrfgap, maxns, maxhalf, width, maxgaps, trimup, trimdn, refl, refr, st, en);

@@ -500,6 +500,7 @@ bool SwAligner::align(
 	SwResult &res,
 	const Coord &coord)
 {
+	// cout<<"1."<<endl; getchar();
 #ifdef TIME_STATS
 	countAlign_Static++;
 #endif
@@ -520,29 +521,39 @@ bool SwAligner::align(
 	bool gathered = false;
 	if (sc_->monotone)
 	{
-		if (enable8_ && !readSse16_ && minsc_ >= -254)
+		// cout<<"2. enable8_："<<enable8_<<" !readSse16_:"<<!readSse16_<<" minsc_:"<<minsc_<<endl; getchar();
+		// if (enable8_ && !readSse16_ && minsc_ >= -254)
+		if (enable8_ && !readSse16_) //gll
 		{
+			// cout<<"3."<<endl; getchar();
 			if (checkpointed)
 			{
 			}
 			else
 			{
+				// cout<<"4."<<endl; getchar();
 #ifdef TIME_STATS
 				auto start_wfa0 = std::chrono::system_clock::now();
 #endif
-				char pattern[150], pat[150];
+				char pattern[MAX_ELEN], pat[MAX_ELEN];
+				// cout<<"bef...pattern...len:"<<strlen(pattern)<<" rf:"<<strlen(rf_)<<endl;
 				for (int i = rfi_; i < rff_; i++)
 				{
 					pattern[i] = mask2iupac[(int)rf_[i]];
 				}
+				// cout<<"aft...pattern...len:"<<strlen(pattern)<<endl;
 				int a = 0;
 				if ((rff_ - rfi_) > rdlen)
 				{
 					a = ((rff_ - rfi_) - rdlen) * 0.5;
 				}
 				strncpy(pat, pattern + a, rdlen);
+				// cout<<"rdlen:"<<rdlen<<" a:"<<a<<" strlen(pattern):"<<strlen(pattern)<<" strlen(pat):"<<strlen(pat)<<" rff_:"<<rff_<<" rfi_:"<<rfi_<<endl;
+				// cout<<pattern<<endl<<endl;
+				// cout<<pat;
+				// getchar();
 				parse(pat, bianma[2]);
-				int thred = CGK_THRED;
+				int thred = rdlen * CGK_THRED;
 				int loop = CGK_LOOP;
 				if (!embed_rd)
 				{
@@ -569,7 +580,8 @@ bool SwAligner::align(
 				auto elapsed_wfa0 = std::chrono::duration_cast<std::chrono::microseconds>(end_wfa0 - start_wfa0);
 				time_wfa0 += elapsed_wfa0.count();
 #endif
-				if (last_hm > CGK_THRED)
+				// cout<<"rdlen:"<<rdlen<<" thred:"<<rdlen * CGK_THRED<<" last_hm:"<<last_hm<<endl; getchar();
+				if (last_hm > (rdlen * CGK_THRED))
 				{
 					return false;
 				}
@@ -580,6 +592,7 @@ bool SwAligner::align(
 				affine_wavefronts_t *affine_wavefronts = affine_wavefronts_new_complete(strlen(pattern), strlen(text), &affine_penalties, NULL, mm_allocator);
 				affine_wavefronts_align(affine_wavefronts, pattern, strlen(pattern), text, strlen(text));
 				best = edit_cigar_score_gap_affine(&affine_wavefronts->edit_cigar, &affine_penalties);
+				// cout<<"best:"<<best<<endl; getchar();
 				edit_cigar_t *const edit_cigar = &affine_wavefronts->edit_cigar;
 				char *const operations = edit_cigar->operations;
 				char cur;
@@ -607,7 +620,7 @@ bool SwAligner::align(
 					sb.append(to_string(num));
 				}
 				res.alres.mycigar = sb;
-				res.alres.setScore(AlnScore(best-1, 101, 0, 0, 0));
+				res.alres.setScore(AlnScore(best-1, rdlen, 0, 0, 0));
 				res.alres.setShape(refidx_, coord.off(), reflen_, fw_, rdf_ - rdi_, true, 0, 0, true, 0, 0);
 				res.alres.setRefNs(0);
 				affine_wavefronts_delete(affine_wavefronts);
