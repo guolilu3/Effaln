@@ -1,5 +1,5 @@
 # Effaln
-version 0.1 (20220915)   
+version 0.1 (<u>20220915</u>)   
 version 0.2 (20231022)   
 version 0.3 (20231205)
 
