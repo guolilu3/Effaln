@@ -11,8 +11,8 @@ Effaln consists of two components, index building and read mapping. You should f
 # Step I. Install
   1. Download (or clone) the source code form https://github.com/guolilu3/Effaln
   2. Compile the source code. (Note that you need to compile semiWFA first)
-     cd ../semiWFA
-     make
+     cd ../semiWFA   
+     make   
 
 # Step II. Build FM-index
   1. Run the shell command: "./effaln-index \<refName\> \<idxName\>", where refName is the reference genome, idxName is the index file name.
@@ -22,3 +22,6 @@ Effaln consists of two components, index building and read mapping. You should f
   
 # Feedback
 Please report bugs to Email: guolilu@stu.xidian.edu.cn if any questions or suggestions. Your feedback and test results are welcome.
+
+# License   
+Effaln is available under the MIT license.   
