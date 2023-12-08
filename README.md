@@ -1,6 +1,7 @@
 # Effaln
-version 1.0 (20220915)   
-version 2.0 (20231022)
+version 0.1 (20220915)   
+version 0.2 (20231022)
+version 0.3 (20231205)
 
 # What is it?
 Effaln is an efficient Burrows-Wheeler-based mapper for longer Next-generation sequencing reads. 
@@ -11,8 +12,10 @@ Effaln consists of two components, index building and read mapping. You should f
 # Step I. Install
   1. Download (or clone) the source code form https://github.com/guolilu3/Effaln
   2. Compile the source code. (Note that you need to compile semiWFA first)
+     '''
      cd ../semiWFA   
-     make   
+     make
+     '''   
 
 # Step II. Build FM-index
   1. Run the shell command: "./effaln-index \<refName\> \<idxName\>", where refName is the reference genome, idxName is the index file name.
