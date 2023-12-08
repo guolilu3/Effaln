@@ -9,22 +9,25 @@ Effaln is an efficient Burrows-Wheeler-based mapper for longer Next-generation s
 # How to use it?
 Effaln consists of two components, index building and read mapping. You should first build the FM-index with the reference genome, and then perform the mapping process.
 
-# Step I. Install
+## Step I. Install
   1. Download (or clone) the source code form https://github.com/guolilu3/Effaln
   2. Compile the source code. (Note that you need to compile semiWFA first)
      ```shell
-     cd ../semiWFA   
+     cd ./semiWFA   
+     make
+     
+     cd ../
      make
      ```
 
-# Step II. Build FM-index
+## Step II. Build FM-index
   1. Run the shell command:
      ```shell
      ./effaln-index <refName> <idxName>
      ```
      where *refName* is the reference genome, *idxName* is the index file name.
   
-# Step III. Mapping
+## Step III. Mapping
   1. Run the shell command:
      ```shell
      ./effaln -x <idxName> -U <rdsName> -S <samName>
